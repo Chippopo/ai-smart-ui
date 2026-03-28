@@ -1,0 +1,207 @@
+/* src/layout.css */
+
+/* page background */
+.layout-wrap {
+    min-height: 100vh;
+    background: radial-gradient(1200px 800px at 20% 10%, rgba(124, 58, 237, .35), transparent 60%),
+        radial-gradient(1100px 900px at 80% 30%, rgba(59, 130, 246, .30), transparent 60%),
+        #070A14;
+    color: #EAF0FF;
+    padding: 28px 14px;
+}
+
+/* container */
+.layout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.layout-header {
+    margin-bottom: 18px;
+}
+
+.layout-header h1 {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.05;
+}
+
+.layout-header p {
+    margin: 8px 0 0;
+    opacity: .75;
+}
+
+/* grid */
+.layout-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 18px;
+}
+
+@media (max-width: 980px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* glass cards */
+.layout-glass {
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .10);
+    border-radius: 22px;
+    padding: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .35);
+}
+
+/* left */
+.mode-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.mode-btn {
+    flex: 1;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(10, 14, 30, .45);
+    color: #EAF0FF;
+    padding: 10px 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.mode-btn.active {
+    border-color: rgba(124, 58, 237, .65);
+    background: linear-gradient(90deg, rgba(124, 58, 237, .55), rgba(59, 130, 246, .55));
+}
+
+.lg-label {
+    display: block;
+    margin: 10px 0 8px;
+    font-weight: 700;
+    font-size: 13px;
+    opacity: .9;
+}
+
+.lg-select,
+.lg-input,
+.lg-textarea {
+    width: 100%;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(10, 14, 30, .40);
+    color: #EAF0FF;
+    padding: 10px 12px;
+    outline: none;
+}
+
+.lg-textarea {
+    resize: none;
+}
+
+.layout-generate {
+    width: 100%;
+    margin-top: 12px;
+    border: 0;
+    border-radius: 16px;
+    padding: 12px 14px;
+    cursor: pointer;
+    font-weight: 900;
+    color: #0B1021;
+    background: linear-gradient(90deg, #A855F7, #3B82F6);
+}
+
+.palette-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.swatch {
+    width: 44px;
+    height: 28px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .18);
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(0, 0, 0, .22);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.switch-btn {
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(10, 14, 30, .40);
+    color: #EAF0FF;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+/* RIGHT PREVIEW */
+.layout-preview-glass {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-body {
+    margin-top: 10px;
+    min-height: 560px;
+}
+
+/* LANDING SCROLL: must scroll when long */
+.landing-scroll {
+    max-height: 560px;
+    overflow: auto;
+    border-radius: 18px;
+    padding-right: 6px;
+}
+
+/* DASHBOARD FIT PREVIEW: no scrollbars, no white overflow */
+.dash-stage {
+    width: 100%;
+    height: 560px;
+    overflow: hidden;
+    /* IMPORTANT: remove scrollbars + crop overflow */
+    border-radius: 18px;
+    background: transparent;
+    /* prevents white block feeling */
+    position: relative;
+}
+
+.dash-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    will-change: transform;
+}
+
+/* hide any internal scrollbars */
+.dash-stage * {
+    scrollbar-width: none;
+}
+
+.dash-stage *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
