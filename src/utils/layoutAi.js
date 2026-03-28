@@ -281,7 +281,7 @@
 import { generateLayout as ruleBasedLayout } from "./layoutGen.js";
 
 const API_BASE = import.meta.env.VITE_LAYOUT_API || "http://localhost:5000";
-const TIMEOUT_MS = 5000; // 5 second timeout before fallback
+const TIMEOUT_MS = 12000; // allow cold starts in production
 
 // ─────────────────────────────────────────────
 // Core: call MobileNetV3 backend
@@ -540,17 +540,25 @@ export async function generateLayoutAI(prompt, mode, seed, brandName = "", onSta
  *
  * @returns {Promise<boolean>}
  */
+function delay(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 export async function checkBackendHealth() {
-  try {
-    const res = await fetch(`${API_BASE}/health`, {
-      signal: AbortSignal.timeout(3000),
-    });
-    if (!res.ok) return false;
-    const data = await res.json();
-    return data.status === "ok";
-  } catch {
-    return false;
+  const attempts = [4000, 8000, 12000];
+  for (let i = 0; i < attempts.length; i++) {
+    try {
+      const res = await fetch(`${API_BASE}/health`, {
+        signal: AbortSignal.timeout(attempts[i]),
+      });
+      if (!res.ok) throw new Error(`status ${res.status}`);
+      const data = await res.json();
+      if (data.status === "ok") return true;
+    } catch {
+      if (i < attempts.length - 1) await delay(750);
+    }
   }
+  return false;
 }
 
 // ─────────────────────────────────────────────
