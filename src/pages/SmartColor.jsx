@@ -29,7 +29,11 @@ export default function SmartColor() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [apiUrl, setApiUrl] = useState(import.meta.env.VITE_COLOR_API_URL || "http://127.0.0.1:8000/generate-palette");
+  const [apiUrl, setApiUrl] = useState(
+    import.meta.env.VITE_COLOR_API ||
+    import.meta.env.VITE_COLOR_API_URL ||
+    "http://127.0.0.1:8000/generate-palette"
+  );
   const [backendExplanations, setBackendExplanations] = useState([]);
 
   const runModelApi = async (formInput) => {

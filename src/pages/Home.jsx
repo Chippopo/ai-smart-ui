@@ -29,7 +29,7 @@ export default function Home() {
           preload="auto"
         >
           {/* IMPORTANT: encode spaces */}
-          <source src="Untitled design - Trim.mp4" type="video/mp4" />
+          <source src="/background.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

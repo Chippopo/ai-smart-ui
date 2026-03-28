@@ -280,7 +280,7 @@
 
 import { generateLayout as ruleBasedLayout } from "./layoutGen.js";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_LAYOUT_API || "http://localhost:5000";
 const TIMEOUT_MS = 5000; // 5 second timeout before fallback
 
 // ─────────────────────────────────────────────
