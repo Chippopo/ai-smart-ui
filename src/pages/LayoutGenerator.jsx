@@ -541,7 +541,6 @@ export default function LayoutGenerator() {
   // ── Generate layout via MobileNetV3 ────────────────────────────────────────
   const runGenerate = useCallback(async (prompt, currentMode, currentSeed, brand) => {
     setIsLoading(true);
-    setSpec(null);
 
     try {
       let result;
@@ -579,6 +578,10 @@ export default function LayoutGenerator() {
 
     } catch (err) {
       console.error("[LayoutGenerator] Generation error:", err);
+      if (!spec) {
+        const fallback = generateLayoutFallback(prompt, currentMode, currentSeed, brand);
+        setSpec({ ...fallback, mode: currentMode });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -649,6 +652,7 @@ export default function LayoutGenerator() {
               {["dashboard","landing","mobile"].map(m => (
                 <button
                   key={m}
+                  type="button"
                   className={`mode-btn ${mode === m ? "active" : ""}`}
                   onClick={() => setMode(m)}
                 >
@@ -691,6 +695,7 @@ export default function LayoutGenerator() {
             />
 
             <button
+              type="button"
               className="layout-generate"
               onClick={onGenerateLayout}
               disabled={isLoading}
@@ -712,8 +717,8 @@ export default function LayoutGenerator() {
             </div>
 
             {/* Navigation */}
-            <button className="switch-btn" onClick={() => nav("/smart-color")}>Go to Smart Color</button>
-            <button className="switch-btn" onClick={() => nav("/")}>Go to Home</button>
+            <button type="button" className="switch-btn" onClick={() => nav("/smart-color")}>Go to Smart Color</button>
+            <button type="button" className="switch-btn" onClick={() => nav("/")}>Go to Home</button>
           </div>
 
           {/* ── RIGHT PANEL ──────────────────────────────────────────────── */}
