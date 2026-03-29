@@ -1962,6 +1962,31 @@ function PhoneMockStyles() {
                     height: 352px;
                 }
             }
+
+            @media (max-width: 900px) {
+                .phone-mock-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+
+            @media (max-width: 600px) {
+                .phone-mock-wrap {
+                    overflow-x: hidden;
+                }
+                .phone-mock-grid {
+                    grid-template-columns: 1fr;
+                }
+                .phone-card {
+                    width: 160px;
+                }
+                .iphone-outer {
+                    width: 160px;
+                    height: 336px;
+                }
+                .phone-label {
+                    font-size: 10px;
+                }
+            }
         `}</style>
     );
 }
