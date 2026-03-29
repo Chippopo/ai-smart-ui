@@ -33,17 +33,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: none;
+  object-position: center;
+  transform: scale(1.08);
   border-radius: 20px;
   z-index: 0;
   opacity: 1;
-  filter: saturate(1.08) contrast(1.08);
+  filter: saturate(1.25) contrast(1.15);
 }
 
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0, 0, 0, 0.12);
   z-index: 1;
 }
 
