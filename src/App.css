@@ -21,6 +21,9 @@
 
   border-radius: 20px;
   overflow: hidden;
+  min-height: 720px;
+  height: calc(100vh - 20px);
+  background: #060a12;
 }
 
 /* Video inside container (desktop) */
@@ -33,12 +36,14 @@
   transform: none;
   border-radius: 20px;
   z-index: 0;
+  opacity: 1;
+  filter: saturate(1.08) contrast(1.08);
 }
 
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.22);
   z-index: 1;
 }
 
@@ -588,4 +593,3 @@ footer {
     font-size: 2rem;
   }
 }
-
