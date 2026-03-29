@@ -32,9 +32,9 @@ import json
 app = Flask(__name__)
 CORS(app)  # Allow React frontend to call this API
 
-# -----------------------------------------------------------------------------
+
 # SQLite Auth Storage
-# -----------------------------------------------------------------------------
+
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "users.db")
 
 
